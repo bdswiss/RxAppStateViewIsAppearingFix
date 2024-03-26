@@ -43,10 +43,10 @@ extension RxSwift.Reactive where Base: UIViewController {
             .map { $0.first as? Bool ?? false }
     }
     
-    public var viewIsAppearing: Observable<Bool> {
-        return methodInvoked(#selector(UIViewController.viewIsAppearing))
-            .map { $0.first as? Bool ?? false }
-    }
+    // public var viewIsAppearing: Observable<Bool> {
+    //     return methodInvoked(#selector(UIViewController.viewIsAppearing))
+    //         .map { $0.first as? Bool ?? false }
+    // }
     
     public var viewDidAppear: Observable<Bool> {
         return methodInvoked(#selector(UIViewController.viewDidAppear))
@@ -80,11 +80,11 @@ extension RxSwift.Reactive where Base: UIViewController {
             viewDidDisappear.map {_ in return ViewControllerViewState.viewDidDisappear }
         ]
         
-        if #available(iOS 13.0, *) {
-            viewControllerStates.append(
-                viewIsAppearing.map { _ in return ViewControllerViewState.viewIsAppearing }
-            )
-        }
+        // if #available(iOS 13.0, *) {
+        //     viewControllerStates.append(
+        //         viewIsAppearing.map { _ in return ViewControllerViewState.viewIsAppearing }
+        //     )
+        // }
         
         return Observable
             .from(viewControllerStates)
